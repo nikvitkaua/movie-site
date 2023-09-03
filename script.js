@@ -1,1 +1,0 @@
-const numberOfFilms = prompt('How much films did you see?');
