@@ -1,23 +1,28 @@
 'use strict';
 
 let numberOfFilms;
-
-function start() {
-  numberOfFilms = +prompt('How much films did you see?', '');
-
-  while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-    numberOfFilms = +prompt('How much films did you see?', '');
-  }
-}
-
-// start();
-
+start();
 const personalMovieDB = {
   count: numberOfFilms,
   movies: {},
   actors: {},
   genres: [],
   privat: false,
+}
+
+
+rememberMyFilms();
+detectPersonalLevel();
+writeYourGenres();
+showMyDB();
+
+// Functions
+function start() {
+  numberOfFilms = +prompt('How much films did you see?', '');
+
+  while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt('How much films did you see?', '');
+  }
 }
 
 function rememberMyFilms() {
@@ -34,8 +39,6 @@ function rememberMyFilms() {
   }
 }
 
-// rememberMyFilms();
-
 function detectPersonalLevel() {
   if (personalMovieDB.count > 0 && personalMovieDB.count < 10) {
     console.log('Few films watched');
@@ -49,8 +52,11 @@ function detectPersonalLevel() {
   
 }
 
-// detectPersonalLevel();
-
+function writeYourGenres() {
+  for (let i = 1; i < 4; i++) {
+    personalMovieDB.genres.push(prompt(`Your favorite genre is numbered ${i}`));
+  }
+}
 
 function showMyDB() {
   if (personalMovieDB.privat === false) {
@@ -59,13 +65,3 @@ function showMyDB() {
     return;
   }
 }
-
-showMyDB();
-
-function writeYourGenres() {
-  for (let i = 1; i < 4; i++) {
-    personalMovieDB.genres.push(prompt(`Your favorite genre is numbered ${i}`));
-  }
-}
-
-writeYourGenres();
